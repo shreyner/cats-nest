@@ -18,42 +18,43 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "db:create": "mikro-orm schema:create -r",
+    "db:update": "mikro-orm schema:create -r",
+    "db:migrate": "exit 1"
   },
   "dependencies": {
-    "@nestjs/common": "^7.0.0",
-    "@nestjs/core": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/common": "^7.0.7",
+    "@nestjs/core": "^7.0.7",
+    "@nestjs/platform-express": "^7.0.7",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.1",
-    "mikro-orm": "^3.6.3",
-    "mongodb": "^3.5.5",
+    "mikro-orm": "^3.6.5",
     "nestjs-mikro-orm": "^1.0.3",
-    "pg": "^7.18.2",
+    "pg": "^8.0.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
-    "@nestjs/cli": "^7.0.0",
+    "@nestjs/cli": "^7.1.2",
     "@nestjs/schematics": "^7.0.0",
-    "@nestjs/testing": "^7.0.0",
-    "@types/express": "^4.17.3",
-    "@types/jest": "25.1.4",
-    "@types/mongodb": "^3.5.5",
-    "@types/node": "^13.9.1",
+    "@nestjs/testing": "^7.0.7",
+    "@types/express": "^4.17.5",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
     "@types/supertest": "^2.0.8",
-    "@typescript-eslint/eslint-plugin": "^2.23.0",
-    "@typescript-eslint/parser": "^2.23.0",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-import": "^2.20.1",
-    "jest": "^25.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "jest": "^25.3.0",
     "prettier": "^1.19.1",
     "supertest": "^4.0.2",
-    "ts-jest": "25.2.1",
+    "ts-jest": "^25.3.1",
     "ts-loader": "^6.2.1",
-    "ts-node": "^8.6.2",
+    "ts-node": "^8.8.2",
     "tsconfig-paths": "^3.9.0",
     "typescript": "^3.7.4"
   },
@@ -70,5 +71,12 @@
     },
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./dist/mikro-orm.config.js"
+    ]
   }
 }

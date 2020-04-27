@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from 'nestjs-mikro-orm';
 import { Cat } from 'src/entities';
 import { EntityRepository, wrap } from 'mikro-orm';
@@ -20,9 +20,11 @@ export class CatsService implements ICatsService {
     const cat = new Cat();
 
     wrap(cat).assign(catDTO);
-
-    await this.catRepository.persistAndFlush(cat);
-
+    try {
+      await this.catRepository.persistAndFlush(cat);
+    } catch (e) {
+      throw new BadRequestException('');
+    }
     return cat;
   }
 

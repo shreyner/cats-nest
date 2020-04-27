@@ -1,13 +1,28 @@
 import { Logger } from '@nestjs/common';
 import { Options } from 'mikro-orm';
-import { Cat, BaseEntity } from './entities';
+import config from './config';
+import { Cat } from './entities';
 
+const conf = config();
 const logger = new Logger('MikroORM');
-export const options: Options = {
-  entities: [Cat, BaseEntity],
+
+const options: Options = {
+  entities: [Cat],
   entitiesDirs: ['dist/entities'],
   entitiesDirsTs: ['src/entities'],
-  clientUrl: 'mongodb://nest-user-1:example@localhost:27017/nest-cats',
+  clientUrl: conf.databaseUri,
+  type: 'postgresql',
   debug: true,
   logger: logger.log.bind(logger),
+  migrations: {
+    tableName: 'mikro_orm_migrations',
+    path: './src/migration',
+    pattern: /^[\w-]+\d+\.ts$/,
+    transactional: true,
+    disableForeignKeys: true,
+    allOrNothing: true, // wrap all migrations in master transaction
+    emit: 'ts', // migration generation mode
+  },
 };
+
+export default options;

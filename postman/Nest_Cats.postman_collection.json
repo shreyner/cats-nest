@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "09ec68d9-d4f7-4e14-9fec-f167ba1005c9",
+		"name": "Nest Cats",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Cats",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/cats",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cats",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"as\",\n\t\"age\": 4,\n\t\"breed\": \"sample\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/cats",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cats"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

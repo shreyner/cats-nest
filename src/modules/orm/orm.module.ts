@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MikroOrmModule } from 'nestjs-mikro-orm';
-import options from '../../mikro-orm.config';
-import { Cat } from '../../entities';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+
+import options from '../../mikro-orm.config';
+import { Cat, User } from '../../entities';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
     }),
     MikroOrmModule.forFeature({
-      entities: [Cat],
+      entities: [Cat, User],
     }),
   ],
   exports: [MikroOrmModule],

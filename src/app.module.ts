@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { CatsModule } from './modules/cats/cats.module';
+import { UsersModule } from './modules/users/users.module';
+import config from './config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CatsModule } from './modules/cats/cats.module';
-import config from './config';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import config from './config';
       isGlobal: true,
       load: [config],
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

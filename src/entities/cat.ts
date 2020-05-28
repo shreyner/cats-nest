@@ -1,5 +1,5 @@
 import { Entity, Index, PrimaryKey, Property, Unique } from 'mikro-orm';
-import { ICat } from '../interfaces/cat';
+import { ICat } from '../interfaces/Cat';
 
 @Index({ properties: ['name'] })
 @Entity()

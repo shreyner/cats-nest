@@ -1,4 +1,5 @@
-import { Entity, Index, PrimaryKey, Property, Unique } from 'mikro-orm';
+import { Entity, Index, PrimaryKey, Property, Unique } from '@mikro-orm/core';
+
 import { IUser } from '../interfaces/User';
 
 @Index({

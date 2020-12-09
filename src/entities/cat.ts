@@ -1,8 +1,17 @@
-import { Entity, Index, PrimaryKey, Property, Unique } from 'mikro-orm';
-import { ICat } from '../interfaces/Cat';
+import {
+  Entity,
+  EntityRepositoryType,
+  Index,
+  PrimaryKey,
+  Property,
+  Unique,
+} from '@mikro-orm/core';
+
+import { ICat } from '../interfaces/cat';
+import { CustomCatsRepository } from '../modules/cats/custom-cats.repository';
 
 @Index({ properties: ['name'] })
-@Entity()
+@Entity({ customRepository: () => CustomCatsRepository })
 export class Cat implements ICat {
   @PrimaryKey({ index: true })
   id!: number;
@@ -16,4 +25,6 @@ export class Cat implements ICat {
 
   @Property()
   breed!: string;
+
+  [EntityRepositoryType]?: CustomCatsRepository;
 }

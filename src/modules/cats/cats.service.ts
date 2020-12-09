@@ -1,8 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from 'nestjs-mikro-orm';
-import { Cat } from 'src/entities';
-import { EntityRepository, wrap } from 'mikro-orm';
+import { wrap } from '@mikro-orm/core';
+import { InjectRepository } from '@mikro-orm/nestjs';
+
 import { CreateCatDTO } from '../../dto/create-cat';
+import { Cat } from '../../entities';
+import { CustomCatsRepository } from './custom-cats.repository';
 
 export interface ICatsService {
   create(catDTO: CreateCatDTO): Promise<Cat>;
@@ -13,7 +15,7 @@ export interface ICatsService {
 export class CatsService implements ICatsService {
   constructor(
     @InjectRepository(Cat)
-    private readonly catRepository: EntityRepository<Cat>,
+    private readonly catRepository: CustomCatsRepository,
   ) {}
 
   async create(catDTO: CreateCatDTO): Promise<Cat> {
@@ -29,6 +31,9 @@ export class CatsService implements ICatsService {
   }
 
   findAll(): Promise<Cat[]> {
-    return this.catRepository.findAll();
+    console.log(this.catRepository.findByName);
+    return Promise.resolve([]);
+
+    // return this.catRepository.findAll();
   }
 }

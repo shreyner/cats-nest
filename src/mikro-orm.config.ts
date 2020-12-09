@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common';
-import { Options } from 'mikro-orm';
+import { Options } from '@mikro-orm/core';
 import config from './config';
 import { Cat } from './entities';
 
@@ -8,8 +8,6 @@ const logger = new Logger('MikroORM');
 
 const options: Options = {
   entities: [Cat],
-  entitiesDirs: ['dist/entities'],
-  entitiesDirsTs: ['src/entities'],
   clientUrl: conf.databaseUri,
   type: 'postgresql',
   debug: true,

@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
-import { MikroOrmModule } from 'nestjs-mikro-orm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { MikroOrmModule } from '@mikro-orm/nestjs';
 
 import options from '../../mikro-orm.config';
-import { Cat, User } from '../../entities';
+import { Cat } from '../../entities';
 
 @Module({
   imports: [
     ConfigModule,
     MikroOrmModule.forRootAsync({
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => {
+      useFactory: async (configService: ConfigService) => {
         const dbUri = configService.get<string>('DATABASE_URI');
 
         return {
@@ -18,9 +18,6 @@ import { Cat, User } from '../../entities';
           clientUrl: dbUri,
         };
       },
-    }),
-    MikroOrmModule.forFeature({
-      entities: [Cat, User],
     }),
   ],
   exports: [MikroOrmModule],

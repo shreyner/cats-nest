@@ -5,6 +5,7 @@ import { UsersModule } from './modules/users/users.module';
 import config from './config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AccountingModule } from './modules/accounting/accounting.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { AppService } from './app.service';
       isGlobal: true,
       load: [config],
     }),
-    UsersModule,
+    // UsersModule,
+    // AccountingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
